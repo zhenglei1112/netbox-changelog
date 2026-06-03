@@ -1,0 +1,61 @@
+{% extends 'generic/object.html' %}
+{% load plugins %}
+{% load helpers %}
+
+{% block extra_styles %}
+<style>
+  .attr-table th {
+    width: 30%;
+  }
+  .attr-table td {
+    width: 70%;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row mb-3">
+  <div class="col col-md-6">
+    <div class="card">
+      <h5 class="card-header">更新日志信息</h5>
+      <table class="table table-hover attr-table">
+        <tr>
+          <th scope="row">日期</th>
+          <td>{{ object.date|date:"Y-m-d" }}</td>
+        </tr>
+        <tr>
+          <th scope="row">版本号</th>
+          <td>{{ object.version|default:"—" }}</td>
+        </tr>
+        <tr>
+          <th scope="row">分类</th>
+          <td>
+            {% if object.category %}
+              <span class="badge bg-{{ object.get_category_color }} text-white">{{ object.get_category_display }}</span>
+            {% else %}
+              —
+            {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">标题</th>
+          <td>{{ object.title }}</td>
+        </tr>
+      </table>
+    </div>
+    {% if object.description %}
+    <div class="card mt-3">
+      <h5 class="card-header">详细描述</h5>
+      <div class="card-body">
+        {{ object.description|markdown }}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  <div class="col col-md-6">
+    {% include 'inc/panels/tags.html' %}
+    {% include 'inc/panels/comments.html' %}
+    {% plugin_right_page object %}
+  </div>
+</div>
+{% endblock %}

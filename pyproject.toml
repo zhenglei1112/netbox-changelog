@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "netbox-changelog"
+version = "0.1.0"
+authors = [
+  { name="Changelog Team", email="changelog@example.com" },
+]
+
+description = "System Changelog recording plugin for Netbox"
+readme = "README.md"
+requires-python = ">=3.10"
+keywords = ["netbox", "plugin", "changelog"]
+license = {text = "MIT"}
+
+dependencies = [
+    'Django>=4.2',
+]
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Framework :: Django",
+    "Framework :: Django :: 4.2",
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: System Administrators",
+]
+
+[tool.setuptools]
+packages = [
+    "netbox_changelog",
+]
+package-data = { "netbox_changelog" = ["**/*", "templates/**"] }
+exclude-package-data = { netbox_changelog = ["tests/*"] }
+license-files = ["LICENSE"]
