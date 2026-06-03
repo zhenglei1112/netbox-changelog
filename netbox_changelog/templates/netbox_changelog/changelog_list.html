@@ -9,6 +9,10 @@
     .table-container ul.pagination, .table-responsive ul.pagination {
       display: none !important;
     }
+    /* 隐藏 NetBox 默认的分页外层容器 */
+    .htmx-container div[hx-target="closest .htmx-container"] {
+      display: none !important;
+    }
   </style>
 
   {% if table.page %}
