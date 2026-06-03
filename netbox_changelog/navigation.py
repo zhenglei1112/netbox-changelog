@@ -5,8 +5,13 @@ menu = PluginMenu(
     groups=(
         ('更新日志', (
             PluginMenuItem(
+                link='plugins:netbox_changelog:changelog_releases',
+                link_text='版本发布',
+                permissions=[],
+            ),
+            PluginMenuItem(
                 link='plugins:netbox_changelog:changelog_list',
-                link_text='更新日志',
+                link_text='管理日志',
                 permissions=['netbox_changelog.view_changelog'],
                 buttons=(
                     PluginMenuButton(

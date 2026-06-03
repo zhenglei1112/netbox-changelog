@@ -4,6 +4,10 @@ from netbox.views.generic import ObjectChangeLogView
 from . import models, views
 
 urlpatterns = [
+    # 版本发布时间轴
+    path('releases/', views.ChangelogReleasesView.as_view(), name='changelog_releases'),
+    
+    # 更新日志列表/操作
     path('logs/', views.ChangelogListView.as_view(), name='changelog_list'),
     path('logs/add/', views.ChangelogEditView.as_view(), name='changelog_add'),
     path('logs/import/', views.ChangelogBulkImportView.as_view(), name='changelog_bulk_import'),

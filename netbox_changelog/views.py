@@ -1,13 +1,24 @@
 from netbox.views import generic
 from utilities.views import register_model_view
 from django.urls import reverse
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponse
 from django.db.models import Model
+from django.views.generic import View
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render
 from typing import Any
 from .models import Changelog
 from .forms import ChangelogForm, ChangelogFilterForm, ChangelogImportForm, ChangelogBulkEditForm
 from .filtersets import ChangelogFilterSet
 from .tables import ChangelogTable
+
+class ChangelogReleasesView(LoginRequiredMixin, View):
+    """版本发布时间轴视图"""
+    def get(self, request: HttpRequest) -> HttpResponse:
+        changelogs = Changelog.objects.all()
+        return render(request, 'netbox_changelog/changelog_releases.html', {
+            'changelogs': changelogs,
+        })
 
 class ChangelogListView(generic.ObjectListView):
     queryset = Changelog.objects.all()
