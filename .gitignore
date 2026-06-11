@@ -23,6 +23,7 @@ share/
 .installed.cfg
 *.egg
 
+
 # Virtual environments
 .venv/
 venv/
@@ -38,3 +39,8 @@ env/
 # Local config / environment files
 .env
 .env.local
+
+# Antigravity
+.antigravity/
+
+

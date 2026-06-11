@@ -73,3 +73,14 @@ class Changelog(NetBoxModel):
 
     def get_category_color(self) -> str | None:
         return ChangelogCategoryChoices.colors.get(self.category)
+
+    def get_category_icon(self) -> str:
+        icons = {
+            'feature': 'mdi-star-outline',
+            'fix': 'mdi-bug-outline',
+            'upgrade': 'mdi-arrow-up-bold-circle-outline',
+            'maintenance': 'mdi-cog-outline',
+            'security': 'mdi-shield-check-outline',
+            'other': 'mdi-tag-outline',
+        }
+        return icons.get(self.category, 'mdi-tag-outline')

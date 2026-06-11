@@ -1,5 +1,6 @@
 {% extends 'generic/_base.html' %}
 {% load helpers %}
+{% load changelog_filters %}
 
 {% block title %}版本发布{% endblock %}
 {% block subtitle %}系统更新与变更日志记录{% endblock %}
@@ -263,24 +264,18 @@
       {% for log in changelogs %}
         <article class="release-item">
           <aside class="release-meta" aria-label="发布元信息">
-            <time class="release-date" datetime="{{ log.date|date:'Y-m-d' }}">{{ log.date|date:"Y-m-d" }}</time>
+            <time class="release-date" datetime="{{ log.date|date:'Y-m-d' }}" title="{{ log.date|date:'Y-m-d' }}">{{ log.date|humanize_date }}</time>
             <div class="release-meta-list">
               <div class="release-meta-row">
                 <i class="mdi mdi-tag-outline" aria-hidden="true"></i>
                 <span class="release-meta-text">{{ log.version|default:"v0.0.0" }}</span>
               </div>
               <div class="release-meta-row">
-                <i class="mdi mdi-shape-outline" aria-hidden="true"></i>
+                <i class="mdi {{ log.get_category_icon }}" aria-hidden="true"></i>
                 <span class="release-meta-text">{{ log.get_category_display }}</span>
               </div>
             </div>
-            {% if perms.netbox_changelog.change_changelog %}
-              <div class="release-compare">
-                <a href="{% url 'plugins:netbox_changelog:changelog_edit' pk=log.pk %}?return_url={% url 'plugins:netbox_changelog:changelog_releases' %}" class="btn btn-sm btn-outline-secondary" title="编辑日志">
-                  <i class="mdi mdi-pencil" aria-hidden="true"></i> 编辑
-                </a>
-              </div>
-            {% endif %}
+
           </aside>
 
           <section class="release-panel" aria-labelledby="release-{{ log.pk }}-title">
