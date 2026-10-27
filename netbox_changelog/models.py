@@ -20,7 +20,7 @@ class ChangelogCategoryChoices(ChoiceSet):
         (UPGRADE, '系统升级', 'blue'),
         (MAINTENANCE, '日常维护', 'orange'),
         (SECURITY, '安全更新', 'purple'),
-        (OTHER, '其他变更', 'gray'),
+        (OTHER, '其他变更', 'cyan'),
     ]
 
 class Changelog(NetBoxModel):
