@@ -81,6 +81,6 @@ class Changelog(NetBoxModel):
             'upgrade': 'mdi-arrow-up-bold-circle-outline',
             'maintenance': 'mdi-cog-outline',
             'security': 'mdi-shield-check-outline',
-            'other': 'mdi-tag-outline',
+            'other': 'mdi-file-document-outline',
         }
-        return icons.get(self.category, 'mdi-tag-outline')
+        return icons.get(self.category, 'mdi-file-document-outline')
